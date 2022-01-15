@@ -1,11 +1,20 @@
 <template>
     <button :style="`font-size: ${textSize}px;`">
-        {{ text }}
+        <span v-if="!isLoading">{{ text }} </span>
+        <ClipLoader
+            v-else
+            size="24px"
+            color="white"
+        />
     </button>
 </template>
 
 <script>
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
     export default {
+        components: {
+            ClipLoader,
+        },
         props: {
             text: {
                 type: String,
@@ -14,6 +23,10 @@
             textSize: {
                 type: Number,
                 default: 28
+            },
+            isLoading: {
+                type: Boolean,
+                default: false
             }
         },
     }

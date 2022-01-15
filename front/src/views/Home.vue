@@ -26,8 +26,9 @@ export default {
   },
   methods: {
     redirectIfNoAutologin() {
-      if (!this.$store.state.autologin && this.$msal.isAuthenticated())
+      if (!this.$store.state.autologin && this.$msal.isAuthenticated()) {
         this.$router.push({name: 'Autologin'});
+      }
     },
     redirectIfNotLoggedIn() {
       if (!this.$msal.isAuthenticated())

@@ -6,16 +6,19 @@
             <div>
                 <input type="text" placeholder="auth-123456789" v-model="autologin">
                 <VButton
-                    @click.native="storeAutologin"
+                    @click.native="accessApp"
                     text="Send"
                     :textSize="18"
+                    :isLoading="isLoading"
                 />
             </div>
+                <p class="error" v-if="error">{{ error }}</p>
         </section>
     </div>
 </template>
 
 <script>
+import { axiosGet } from '../plugins/axiosWrapper';
 import VButton from '@/components/VButton.vue';
     export default {
         components: {
@@ -23,13 +26,34 @@ import VButton from '@/components/VButton.vue';
         },
         data() {
             return {
-                autologin: ''
+                autologin: '',
+                error: undefined,
+                isLoading: false
             }
         },
         methods: {
+            async accessApp() {
+                let options = {
+                    params: {
+                        user_email: this.$store.state.user.userName,
+                        autologin: this.autologin
+                    }
+                }
+
+                this.isLoading = true;
+                let res = await axiosGet('/roadblocks', options);
+
+                if (res[0]) {
+                    this.storeAutologin();
+                    this.$router.push({name: 'Home'});
+                } else {
+                    this.isLoading = false;
+                    this.error = "Wrong autologin link";
+                }
+            },
             storeAutologin() {
                 this.$store.dispatch('setAutologin', this.autologin);
-                this.$router.push({name: 'Home'});
+                localStorage.setItem("autologin", this.autologin);
             }
         },
     }
@@ -56,6 +80,9 @@ input {
     font-size: 22px;
     border: 1px solid grey;
     border-radius: 5px;
+}
+.error {
+    color: #FC5C65;
 }
 
 @media screen and (max-width: 768px) {
