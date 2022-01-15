@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js src/app.js",
+    "start": "./node_modules/nodemon/bin/nodemon.js back/app.js",
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
   "keywords": [],
