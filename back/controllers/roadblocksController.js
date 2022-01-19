@@ -19,6 +19,9 @@ function getModuleCredits(title, moduleInstances) {
         } else {
             credits.validated += moduleInstance.credits;
         }
+        if (moduleInstance.title) {
+            credits.fullname = moduleInstance.title;
+        }
     }
     return credits;
 }
