@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '@/store/index'
 
 Vue.use(VueRouter)
 
@@ -10,6 +9,15 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: {
+      requiresAuth: true,
+      requiresAutologin: true
+    }
+  },
+  {
+    path: '/:id',
+    name: 'RoadblockDetails',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RoadblockDetails.vue'),
     meta: {
       requiresAuth: true,
       requiresAutologin: true

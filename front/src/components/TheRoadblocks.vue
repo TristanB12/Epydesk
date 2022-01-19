@@ -5,11 +5,7 @@
             <VPannel
                 v-for="item in roadblocks"
                 :key="item.title"
-                :title="item.title"
-                :needed="item.needed"
-                :validated="item.validated"
-                :inProgress="item.inProgress"
-                :failed="item.failed"
+                :infos="item"
             />
         </section>
         <section v-else>

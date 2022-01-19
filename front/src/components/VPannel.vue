@@ -1,62 +1,45 @@
 <template>
     <div class="pannel">
         <div class="title-container">
-            <h3>{{ title }}</h3>
+            <h3>{{ infos.title }}</h3>
+            <img src="@/assets/see_more_icon.png" @click="$router.push({name: 'RoadblockDetails', params: {id: infos.title}})" />
         </div>
         <div class="needed-container">
-            <h3>{{ needed }}</h3>
-            <span>{{ unitText }}</span>
+            <h3>{{ infos.needed }}</h3>
+            <span>{{ infos.unitText }}</span>
         </div>
         <VProgressBar
-            :needed="needed"
-            :validated="validated"
-            :inProgress="inProgress"
+            :needed="infos.needed"
+            :validated="infos.validated"
+            :inProgress="infos.inProgress"
         />
         <VPannelInfos
-            :validated="validated"
-            :inProgress="inProgress"
-            :failed="failed"
+            :validated="infos.validated"
+            :inProgress="infos.inProgress"
+            :failed="infos.failed"
         />
     </div>
 </template>
 
 <script>
+import VButton from '@/components/VButton.vue'
 import VPannelInfos from '@/components/VPannelInfos.vue';
 import VProgressBar from '@/components/VProgressBar.vue';
     export default {
         components: {
             VProgressBar,
             VPannelInfos,
+            VButton
         },
         props: {
-            title: {
-                type: String,
-                default: ''
-            },
-            unit: {
-                type: String,
-                default: 'crédits'
-            },
-            needed: {
-                type: Number,
-                default: 0
-            },
-            validated: {
-                type: Number,
-                default: 0
-            },
-            inProgress: {
-                type: Number,
-                default: 0
-            },
-            failed: {
-                type: Number,
-                default: 0
-            },
+            infos: {
+                type: Object,
+                default: undefined
+            }
         },
         computed: {
             unitText() {
-                return this.unit + ' requis';
+                return this.infos.needed + ' requis';
             }
         },
     }
@@ -74,12 +57,24 @@ import VProgressBar from '@/components/VProgressBar.vue';
 }
 .title-container {
     border-bottom: 1px solid #E5E5E5;
-    margin-bottom: 5%;
+    margin: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h3 {
         padding: 8px 10px;
         font-size: 20px;
         font-weight: 400;
+    }
+    img {
+        max-width: 25px;
+        cursor: pointer;
+        transition-duration: 200ms;
+
+        &:hover {
+            max-width: 30px;
+        }
     }
 }
 .needed-container {

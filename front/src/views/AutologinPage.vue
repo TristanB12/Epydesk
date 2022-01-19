@@ -1,8 +1,8 @@
 <template>
     <div class="autologin">
         <section>
-            <h1>We need your autologin link</h1>
-            <span>Get it <a href="https://intra.epitech.eu/admin/autolog" target="_blank">here.</a> Copy past the part after "https://intra.epitech.eu/"</span>
+            <h1>Nous avons besoin de votre autologin</h1>
+            <span>Obtenez le <a href="https://intra.epitech.eu/admin/autolog" target="_blank">ici.</a> Copiez-collez la partie après "https://intra.epitech.eu/"</span>
             <div>
                 <input type="text" placeholder="auth-123456789" v-model="autologin">
                 <VButton
@@ -48,7 +48,7 @@ import VButton from '@/components/VButton.vue';
                     this.$router.push({name: 'Home'});
                 } else {
                     this.isLoading = false;
-                    this.error = "Wrong autologin link";
+                    this.error = "Autologin invalide";
                 }
             },
             storeAutologin() {

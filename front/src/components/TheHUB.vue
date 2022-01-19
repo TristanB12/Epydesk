@@ -5,12 +5,7 @@
             <TheHUBAside @get-experimentations="getHUB(true)" />
             <VPannel
                 v-if="hub"
-                title="HUB"
-                unit="xps"
-                :needed="hub.needed"
-                :validated="hub.validated"
-                :inProgress="hub.inProgress"
-                :failed="0"
+                :infos="hub"
             />
             <VPannelSkeleton v-else />
         </section>
@@ -50,8 +45,12 @@ import { axiosGet } from '../plugins/axiosWrapper'
                 }
                 let res = await axiosGet('/hub', options);
 
-                if (res[0])
-                    this.hub = res[0].data;
+                if (res[0]) {
+                    this.hub = {
+                     ...res[0].data
+                    };
+                    this.hub.title = "Hub"
+                }
             }
         },
     }
