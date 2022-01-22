@@ -6,7 +6,7 @@
         </div>
         <div class="needed-container">
             <h3>{{ infos.needed }}</h3>
-            <span>{{ infos.unitText }}</span>
+            <span>{{ unitText }}</span>
         </div>
         <VProgressBar
             :needed="infos.needed"
@@ -39,11 +39,15 @@ import VProgressBar from '@/components/VProgressBar.vue';
             canAccessDetails: {
                 type: Boolean,
                 default: true
+            },
+            roadblockType: {
+                type: String,
+                default: "crédits"
             }
         },
         computed: {
             unitText() {
-                return this.infos.needed + ' requis';
+                return this.infos.needed + ' ' + this.roadblockType + ' requis';
             }
         },
     }
@@ -83,5 +87,6 @@ import VProgressBar from '@/components/VProgressBar.vue';
 }
 .needed-container {
     text-align: center;
+    margin-top: 20px;
 }
 </style>

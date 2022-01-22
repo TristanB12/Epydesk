@@ -114,4 +114,10 @@
         font-weight: 500;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .item > div {
+        flex-direction: column;
+    }
+}
 </style>

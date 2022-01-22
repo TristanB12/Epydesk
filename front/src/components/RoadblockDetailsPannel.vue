@@ -62,4 +62,11 @@ export default {
 .header {
     margin-bottom: 30px;
 }
+
+@media screen and (max-width: 1100px) {
+    .details-pannel {
+        margin-top: 50px;
+        width: 100%;
+    }
+}
 </style>

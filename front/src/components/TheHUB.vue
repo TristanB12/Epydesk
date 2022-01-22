@@ -6,6 +6,8 @@
             <VPannel
                 v-if="hub"
                 :infos="hub"
+                :canAccessDetails="false"
+                roadblockType="xps"
             />
             <VPannelSkeleton v-else />
         </section>

@@ -91,4 +91,17 @@ main {
         margin-right: 10px;
     }
 }
+
+@media screen and (max-width: 1100px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        width: 80%;
+    }
+}
 </style>

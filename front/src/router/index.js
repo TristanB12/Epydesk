@@ -15,15 +15,6 @@ const routes = [
     }
   },
   {
-    path: '/:id',
-    name: 'RoadblockDetails',
-    component: () => import(/* webpackChunkName: "about" */ '../views/RoadblockDetails.vue'),
-    meta: {
-      requiresAuth: true,
-      requiresAutologin: true
-    }
-  },
-  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginPage.vue')
@@ -32,7 +23,16 @@ const routes = [
     path: '/autologin',
     name: 'Autologin',
     component: () => import(/* webpackChunkName: "about" */ '../views/AutologinPage.vue')
-  }
+  },
+  {
+    path: '/:id',
+    name: 'RoadblockDetails',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RoadblockDetails.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAutologin: true
+    }
+  },
 ]
 
 const router = new VueRouter({
