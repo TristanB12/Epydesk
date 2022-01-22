@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import msal from 'vue-msal'
+import msal from 'vue-msal-2'
 
 Vue.use(msal, {
     auth: {
