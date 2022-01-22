@@ -1,6 +1,7 @@
 <template>
     <button :style="`font-size: ${textSize}px;`">
-        <span v-if="!isLoading">{{ text }} </span>
+        <img v-if="iconName && !isLoading" :src="imagePath" :alt="iconName">
+        <span v-else-if="text && !isLoading">{{ text }} </span>
         <ClipLoader
             v-else
             size="24px"
@@ -18,7 +19,7 @@ import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
         props: {
             text: {
                 type: String,
-                default: ""
+                default: null
             },
             textSize: {
                 type: Number,
@@ -27,6 +28,15 @@ import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
             isLoading: {
                 type: Boolean,
                 default: false
+            },
+            iconName: {
+                type: String,
+                default: null
+            },
+        },
+        computed: {
+            imagePath() {
+                return require(`../assets/${this.iconName}`);
             }
         },
     }
@@ -34,7 +44,7 @@ import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 <style lang="scss" scoped>
 button {
-    padding: 10px 25px;
+    padding: 5px 20px;
     outline: none;
     background-color: #00A3FF;
     color: white;
@@ -49,5 +59,8 @@ button {
         background-color: #009af3;
         box-shadow: 2px 4px 6px rgba($color: black, $alpha: 0.25);
     }
+}
+img {
+    max-width: 20px;
 }
 </style>

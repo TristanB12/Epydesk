@@ -1,15 +1,41 @@
 <template>
     <div class="details">
         <TheHeaderBar />
+        <main>
+            <div class="header">
+                <VButton
+                    @click.native="$router.push({name: 'Home'})"
+                    iconName="arrow_back_icon.png"
+                />
+                <h2>{{ $route.params.id }}</h2>
+            </div>
+            <div class="content">
+                <VPannel
+                    v-if="infos"
+                    :infos="infos"
+                    :canAccessDetails="false"
+                />
+                <VPannelSkeleton v-else />
+                <RoadblockDetailsPannel v-if="infos" :modules="infos.modules" />
+            </div>
+        </main>
     </div>
 </template>
 
 <script>
+import VButton from '@/components/VButton.vue';
+import RoadblockDetailsPannel from '@/components/RoadblockDetailsPannel.vue';
+import VPannelSkeleton from '@/components/VPannelSkeleton.vue';
 import { axiosGet } from '../plugins/axiosWrapper'
+import VPannel from '@/components/VPannel.vue'
 import TheHeaderBar from '@/components/TheHeaderBar.vue';
 export default {
     components: {
-        TheHeaderBar
+        TheHeaderBar,
+        VPannel,
+        VPannelSkeleton,
+        RoadblockDetailsPannel,
+        VButton
     },
     data() {
         return {
@@ -44,6 +70,25 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+main {
+    width: 70%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
 
+    .content {
+        margin-top: 5vh;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.header {
+    display: flex;
+    align-items: center;
+
+    button {
+        margin-right: 10px;
+    }
+}
 </style>

@@ -2,7 +2,7 @@
     <div class="pannel">
         <div class="title-container">
             <h3>{{ infos.title }}</h3>
-            <img src="@/assets/see_more_icon.png" @click="$router.push({name: 'RoadblockDetails', params: {id: infos.title}})" />
+            <img src="@/assets/see_more_icon.png" v-if="canAccessDetails" @click="$router.push({name: 'RoadblockDetails', params: {id: infos.title}})" />
         </div>
         <div class="needed-container">
             <h3>{{ infos.needed }}</h3>
@@ -35,6 +35,10 @@ import VProgressBar from '@/components/VProgressBar.vue';
             infos: {
                 type: Object,
                 default: undefined
+            },
+            canAccessDetails: {
+                type: Boolean,
+                default: true
             }
         },
         computed: {

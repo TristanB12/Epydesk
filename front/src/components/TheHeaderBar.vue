@@ -16,6 +16,7 @@
         methods: {
             logout() {
                 this.$msal.signOut();
+                localStorage.clear();
             }
         },
     }
