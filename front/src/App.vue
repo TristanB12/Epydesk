@@ -18,6 +18,8 @@ export default {
         this.$store.dispatch('setAutologin', autologin);
     },
     storeUserInfos() {
+      if (this.$msal.isAuthenticated())
+        this.$router.push({name: 'Login'});
       this.$store.dispatch('setUser', this.$msal.data.user);
     }
   }

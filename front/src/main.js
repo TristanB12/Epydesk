@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import msal from 'vue-msal-2'
+import msal from 'vue-msal'
 
 Vue.use(msal, {
     auth: {
@@ -10,6 +10,7 @@ Vue.use(msal, {
       tenantId: process.env.VUE_APP_TENANT_ID,
     }
 });
+
 
 Vue.config.productionTip = false
 
